@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Get turn.js</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width = 1150" />
+<link rel="icon" type="image/png" href="../pics/favicon.png" />
+<link type="text/css" rel="stylesheet" href="css/default.css"></link>
+<link type="text/css" rel="stylesheet" href="css/get.css"></link>
+
+<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
+
+</head>
+<body>
+
+
+<div class="get-box">
+<div class="content comparison">
+<a class="small-turnjs" href="http://www.turnjs.com"></a>
+	<h1>Get a commercial license</h1>
+	<table class="comp" cellspacing="0">
+	<tr><th width="40%">Features</th> <th width="30%">4th release</th> <th width="30%">3rd release</th></tr>
+	<tr class="odd"><td>Dynamic pages</td> <td class="yes">&#10003;</td> <td class="yes">&#10003;</td></tr>
+	<tr><td>Single and double pages</td> <td class="yes">&#10003;</td> <td class="yes">&#10003;</td></tr>
+	<tr class="odd"><td>Free updates</td> <td class="yes">&#10003;</td> <td class="yes">&#10003;</td></tr>
+	<tr><td>Unlimited flipbooks</td> <td class="yes">&#10003;</td> <td class="yes">&#10003;</td></tr>
+	<tr class="odd"><td>Hard pages</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr><td>Pages of different size</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr class="odd"><td>AutoCenter</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr><td>Zoom - <a href="../../default.htm">See a sample</a></td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr class="odd"><td>Direction (LTR and RTL)</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr><td>IE 8 Support</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr class="odd"><td>Rich and beautiful samples</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr><td>Navigation bars</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr class="odd"><td>+10 improvements</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr><td>Email support</td> <td class="yes">&#10003;</td> <td class="no"></td></tr>
+	<tr class="odd"><td class="price">Price</td> <td class="price"> $99 - Up to 5 domains <br /> $499 - Unlimited domains</td> <td class="price"> $45 - Up to 5 domains<br /> $299 - Unlimited domains</td></tr>
+	<tr><td class="order" colspan="3"> <a href="get/order" class="get-now">Order now</a>   </td></tr>
+</table>
+</div>
+
+<div class="questions">
+	<h2>Questions</h2>
+	<p>Send us your questions</p>
+	<form method="post" id="contact">
+	<label for="name">Name</label> <br /> <input name="name" id="name" size="30"> <br />
+	<label for="email">Email</label> <br /> <input name="email" id="email" size="30"> <br />
+	<label for="message">Enquiries</label> <br />
+	<textarea style="width:380px; height:100px;" name="message" id="message"></textarea><br />
+	<input type="submit" value="Send">
+	<div class="clear"></div>
+	</form>
+</div>
+</div>
+
+
+<script type="text/javascript">
+
+	$('#contact').submit(function(e) {
+		e.preventDefault();
+
+		var form = $(this),
+			data = {name: jQuery.trim(form.find('input[name="name"]').val()),
+			email: jQuery.trim(form.find('input[name="email"]').val()),
+			message: jQuery.trim(form.find('textarea[name="message"]').val())};
+		
+		if (data.name=='' || data.name.length<4) {
+			
+			alert('Your name is very important');
+			form.find('input[name="name"]').focus();
+
+		} else if (!/^[\.a-z0-9_-]+@[a-z0-9_-]{2,}(\.[a-z]{2,})+$/i.test(data.email)) {
+			
+			alert('Your e-mail is very important');
+			form.find('input[name="email"]').focus();
+
+		} else if (data.message=='' || data.message.length<10) {
+			
+			alert('Your message is very important');
+			form.find('input[name="message"]').focus();
+
+		} else {
+			$.post('get/contact',
+				data,
+				function(data) {
+					$('.questions').html('Thank you for your message!');
+				}
+			);
+		}
+	});
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-28960832-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+</body>
+</html>
